@@ -30,11 +30,12 @@ class SubmitActivity : AppCompatActivity() {
                 TextInputEditTextLastName.error = "Enter your last name"
             } else if (TextUtils.isEmpty(email)) {
                 TextInputEditTextEmail.error = "Enter your email"
-            } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 TextInputEditTextEmail.error = "Enter your a valid email"
             } else if (TextUtils.isEmpty(link)) {
-                TextInputEditTextEmail.error = "Enter your project link"
-            } else if (Patterns.WEB_URL.matcher(link).matches()) {
+                TextInputEditTextLink.error = "Enter your project link"
+            } else if (!Patterns.WEB_URL.matcher(link).matches()) {
                 TextInputEditTextLink.error = "Enter your a valid link"
             } else {
 
@@ -62,6 +63,8 @@ class SubmitActivity : AppCompatActivity() {
             }
 
             confirmButton?.setOnClickListener {
+
+                dialog.dismiss()
 
                 executeAsync({
 
